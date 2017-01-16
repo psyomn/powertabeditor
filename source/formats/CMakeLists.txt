@@ -51,6 +51,8 @@ set( srcs
     powertab_old/powertabdocument/tempomarker.cpp
     powertab_old/powertabdocument/timesignature.cpp
     powertab_old/powertabdocument/tuning.cpp
+
+    text/textexporter.cpp
 )
 
 set( headers
@@ -105,6 +107,8 @@ set( headers
     powertab_old/powertabdocument/tempomarker.h
     powertab_old/powertabdocument/timesignature.h
     powertab_old/powertabdocument/tuning.h
+
+    text/textexporter.h
 )
 
 if ( PLATFORM_WIN )

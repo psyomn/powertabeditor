@@ -23,6 +23,7 @@
 #include <formats/powertab/powertabimporter.h>
 #include <formats/powertab/powertabexporter.h>
 #include <formats/powertab_old/powertaboldimporter.h>
+#include <formats/text/textexporter.h>
 
 FileFormatManager::FileFormatManager(const SettingsManager &settings_manager)
 {
@@ -33,6 +34,7 @@ FileFormatManager::FileFormatManager(const SettingsManager &settings_manager)
 
     myExporters.emplace_back(new PowerTabExporter());
     myExporters.emplace_back(new MidiExporter(settings_manager));
+    myExporters.emplace_back(new TextExporter());
 }
 
 boost::optional<FileFormat> FileFormatManager::findFormat(
