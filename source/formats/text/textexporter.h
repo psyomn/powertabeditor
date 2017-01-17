@@ -18,14 +18,18 @@
 #ifndef FORMATS_TEXTEXPORTER_H
 #define FORMATS_TEXTEXPORTER_H
 
+#include <score/score.h>
 #include <formats/fileformatmanager.h>
 
 class TextExporter : public FileFormatExporter
 {
 public:
     TextExporter();
-
     virtual void save(const std::string &filename, const Score &score) override;
+
+private:
+    static void writeSystem(System const &);
+    static void writeStaff(Staff const &);
 };
 
 #endif
