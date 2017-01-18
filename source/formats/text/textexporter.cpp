@@ -18,12 +18,20 @@
 #include "textexporter.h"
 #include <score/score.h>
 #include <formats/fileformat.h>
+
+// TODO remove stuff when done
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <cstddef>
+#include <string>
+#include <vector>
 
 using std::cout;
 using std::endl;
+using std::vector;
+using std::string;
+using std::stringstream;
 
 TextExporter::TextExporter()
     : FileFormatExporter(FileFormat("Text Tablature", {"txt"}))
@@ -31,22 +39,35 @@ TextExporter::TextExporter()
 
 void TextExporter::writeStaff(Staff const & staff)
 {
+  int stringCount = staff.getStringCount();
+  vector<stringstream> tab(stringCount);
+
   /* we should just export the staves, as they are in the tablature. */
   for (auto &voice : staff.getVoices()) {
     for (auto &pos : voice.getPositions()) {
+      size_t noteIndex = 0;
+
       for (auto &note : pos.getNotes()) {
-        cout <<  note.getFretNumber() << " ";
+        tab[noteIndex] << note.getFretNumber() << "-";
+        noteIndex++;
       }
 
-      cout << endl;
+      for (size_t n = noteIndex; n < stringCount; ++n) {
+        /* fill in any remaining string that doesn't have a note */
+        tab[n] << "---";
+      }
+
     }
+
+    for (auto &st : tab) {
+      cout << st.str() << endl;
+    }
+    cout << endl;
   }
 }
 
 void TextExporter::writeSystem(System const & sys)
 {
-    cout << "Amount of staves: " << endl;
-
     for (auto &staff : sys.getStaves()) {
       writeStaff(staff);
     }
