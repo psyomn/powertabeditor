@@ -19,6 +19,7 @@
 #include "ui_infodialog.h"
 
 #include <app/appinfo.h>
+#include <app/log.h>
 
 #include <QClipboard>
 
@@ -47,9 +48,17 @@ void InfoDialog::setInfo()
         QString(QObject::tr("You can grab development binaries here:\n"
                             "  https://github.com/powertab/powertabeditor/actions"));
 
-    const auto message = QString("%1\n\n%2").arg(
+    const auto contents = QString::fromStdString(Log::logContents());
+
+    const auto message = QString(
+        "%1\n\n"
+        "%2\n\n"
+        "===============================\n"
+        "Logs:\n%3"
+    ).arg(
         qname,
-        developmentBinaryLocation
+        developmentBinaryLocation,
+        contents
     );
 
     ui->appInfo->setText(message);

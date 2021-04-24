@@ -131,6 +131,8 @@ protected:
 
 int main(int argc, char *argv[])
 {
+    // This sets up our custom logging mechanism, that can print and
+    // save into a text file for future debugging
     qInstallMessageHandler(Log::Output);
 
     // Register handlers for unhandled exceptions and segmentation faults.

@@ -21,6 +21,7 @@
 #include <QtGlobal>
 
 namespace Log {
+std::string logContents();
 void Output(QtMsgType type, const QMessageLogContext &context, const QString &msg);
 }
 #endif
