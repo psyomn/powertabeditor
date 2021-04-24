@@ -14,8 +14,9 @@
   * You should have received a copy of the GNU General Public License
   * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
- 
+
 #include <app/appinfo.h>
+#include <app/log.h>
 #include <app/paths.h>
 #include <app/powertabeditor.h>
 #include <app/settings.h>
@@ -130,6 +131,8 @@ protected:
 
 int main(int argc, char *argv[])
 {
+    qInstallMessageHandler(Log::Output);
+
     // Register handlers for unhandled exceptions and segmentation faults.
     std::set_terminate(terminateHandler);
     std::signal(SIGSEGV, signalHandler);

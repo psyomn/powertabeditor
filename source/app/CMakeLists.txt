@@ -6,6 +6,7 @@ set( srcs
     clipboard.cpp
     command.cpp
     documentmanager.cpp
+    log.cpp
     paths.cpp
     powertabeditor.cpp
     recentfiles.cpp
@@ -22,6 +23,7 @@ set( headers
     clipboard.h
     command.h
     documentmanager.h
+    log.h
     paths.h
     powertabeditor.h
     recentfiles.h
